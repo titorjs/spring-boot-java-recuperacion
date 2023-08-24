@@ -19,14 +19,20 @@ public class ResultInfo {
         @Override
         public String toString() {
 
-            return  "1. Name: " + name + "\n" +
+            int lineaPunteada = 30;
+
+            //implementación del switch linea punteada
+
+            return  "PokeDex\n" +
+                    "-".repeat(lineaPunteada) + "\n" +
+                    "1. Name: " + name + "\n" +
                     "2. Height: " + (String.format("%.1f", ((float)height)*0.1)) + " m\n" +
                     "3. Weight: " + (String.format("%.1f", ((float)weight)*0.1)) + " kg\n" +
                     "4. Description: " + description + "\n" +
                     "5. Type: " + type + "\n" +
                     "6. Weaknesses: " + weaknesses + "\n" +
-                    "7. Base Point\n" +
-                    basePoint ;
+                    "7. Base Point\n" + basePoint +
+                    "-".repeat(lineaPunteada) + "\n";
         }
     }
 }

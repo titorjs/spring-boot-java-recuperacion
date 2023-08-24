@@ -23,7 +23,7 @@ public class GenerateData {
 
     }
 
-    public Optional<ResultInfo> getInformation() {
+    public Optional<String> getInformation() {
         if (pokemonModel != null){
             ResultInfo.ResultInfoBuilder resultInfoBuilder = ResultInfo.builder();
             resultInfoBuilder.name(pokemonModel.getName());
@@ -66,7 +66,7 @@ public class GenerateData {
             log.info("\n*********** Resultado en consola **********" +
                     "\n" + resultInfoBuilder);
 
-            return Optional.of(resultInfoBuilder.build());
+            return Optional.of(resultInfoBuilder.toString());
         }
         return Optional.empty();
     }
