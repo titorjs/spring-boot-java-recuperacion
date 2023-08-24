@@ -18,11 +18,7 @@ public class ResultInfo {
     public static class ResultInfoBuilder{
         @Override
         public String toString() {
-
-            int lineaPunteada = 30;
-
-            //implementación del switch linea punteada
-
+            int lineaPunteada = mayorLongitudParams();
             return  "PokeDex\n" +
                     "-".repeat(lineaPunteada) + "\n" +
                     "1. Name: " + name + "\n" +
@@ -33,6 +29,32 @@ public class ResultInfo {
                     "6. Weaknesses: " + weaknesses + "\n" +
                     "7. Base Point\n" + basePoint +
                     "-".repeat(lineaPunteada) + "\n";
+        }
+
+        public int mayorLongitudParams(){
+            int max = 9 + name.length();
+
+            int aux = 11 + (String.format("%.1f", ((float)height)*0.1)).length();
+            if(max < aux){
+                max = aux;
+            }
+
+            aux = 9 + (String.format("%.1f", ((float)weight)*0.1)).length();
+            if(max < aux){
+                max = aux;
+            }
+
+            aux = 9 + type.length();
+            if(max < aux){
+                max = aux;
+            }
+
+            aux = 15 + weaknesses.length();
+            if(max < aux){
+                max = aux;
+            }
+
+            return max;
         }
     }
 }

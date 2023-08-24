@@ -26,20 +26,25 @@ public class GenerateData {
     }
 
     public Optional<String> getInformation() {
-        if (pokemonModel != null){
+        if (pokemonModel != null && pokemonModel.getName() != null){
             ResultInfo.ResultInfoBuilder resultInfoBuilder = ResultInfo.builder();
             resultInfoBuilder.name(pokemonModel.getName());
             resultInfoBuilder.height(pokemonModel.getHeight());
             resultInfoBuilder.weight(pokemonModel.getWeight());
 
-            String description = pokeApiClient.getPokemonDescription(pokemonModel.getName())
+             Optional<PokemonDescription.Texts> aux = pokeApiClient.getPokemonDescription(pokemonModel.getName())
                     .getFlavor_text_entries().stream()
-                    .filter(texto -> language.equals(texto.getLanguage()/*.get(0)*/.getName()))
-                    .findFirst().get().getFlavor_text();
+                    .filter(texto -> language.equals(texto.getLanguage().getName())).findFirst();
+
+            String description;
+
+            if (aux.isEmpty()){
+                description = "No hay una descripción para el idioma seleccionado :/";
+            } else {
+                description = aux.get().getFlavor_text();
+            }
 
             resultInfoBuilder.description(description);
-
-
 
             String types = pokemonModel.getTypes().stream()
                     .map(type -> type.getType().getName()).reduce("", (text, element) -> text + " " +element);
@@ -70,6 +75,6 @@ public class GenerateData {
 
             return Optional.of(resultInfoBuilder.toString());
         }
-        return Optional.empty();
+        return Optional.of("No se encontró el pokemon que buscabas :/");
     }
 }

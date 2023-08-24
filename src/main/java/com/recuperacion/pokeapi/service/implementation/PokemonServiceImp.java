@@ -20,7 +20,14 @@ public class PokemonServiceImp implements PokemonService {
     private PokeApiClient pokeApiClient;
 
     @Override
-    public Optional<String> getInfoPokemon(String name, String language) {
+    public Optional<String> getInfoPokemon(String name) {
+        PokemonModel pokemonModel = pokeApiClient.getPokemon(name);
+        GenerateData generateData = new GenerateData(pokemonModel, "fr",pokeApiClient);
+        return generateData.getInformation();
+    }
+
+    @Override
+    public Optional<String> getInfoPokemonLanguage(String name, String language) {
         PokemonModel pokemonModel = pokeApiClient.getPokemon(name);
         GenerateData generateData = new GenerateData(pokemonModel, language,pokeApiClient);
         return generateData.getInformation();
