@@ -16,9 +16,11 @@ import java.util.stream.Collectors;
 public class GenerateData {
     private PokemonModel pokemonModel;
     private PokeApiClient pokeApiClient;
+    private String language;
 
-    public GenerateData(PokemonModel pokemonModel, PokeApiClient pokeApiClient) {
+    public GenerateData(PokemonModel pokemonModel, String language, PokeApiClient pokeApiClient) {
         this.pokemonModel = pokemonModel;
+        this.language = language;
         this.pokeApiClient = pokeApiClient;
 
     }
@@ -32,7 +34,7 @@ public class GenerateData {
 
             String description = pokeApiClient.getPokemonDescription(pokemonModel.getName())
                     .getFlavor_text_entries().stream()
-                    .filter(texto -> "es".equals(texto.getLanguage()/*.get(0)*/.getName()))
+                    .filter(texto -> language.equals(texto.getLanguage()/*.get(0)*/.getName()))
                     .findFirst().get().getFlavor_text();
 
             resultInfoBuilder.description(description);

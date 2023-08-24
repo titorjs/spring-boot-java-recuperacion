@@ -19,10 +19,10 @@ public class PokeApiController {
     @Autowired
     private PokemonService pokemonService;
 
-    @GetMapping("/infoPoke/{name}")
-    public ResponseEntity<String> getPokeInfo(@PathVariable String name){
+    @GetMapping("/infoPoke/{language}/{name}")
+    public ResponseEntity<String> getPokeInfo(@PathVariable String name, @PathVariable String language){
 
-        Optional<String> optionalResult = pokemonService.getInfoPokemon(name);
+        Optional<String> optionalResult = pokemonService.getInfoPokemon(name, language);
         if (optionalResult.isPresent()) {
             return ResponseEntity.ok(optionalResult.get());
         }
