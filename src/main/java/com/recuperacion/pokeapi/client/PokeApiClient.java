@@ -19,7 +19,7 @@ public interface PokeApiClient {
     public PokemonBasico getPokemonBasico(@PathVariable String name);
 
     @GetMapping("/pokemon-species/{name}/")
-    public PokemonDescription getPokemonDescription(@PathVariable String id);
+    public PokemonDescription getPokemonDescription(@PathVariable String name);
 
     @GetMapping("/type/{name}/")
     public PokemonWeaknesses getTypeWeaknesses(@PathVariable String name);

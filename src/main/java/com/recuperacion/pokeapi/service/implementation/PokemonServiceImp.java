@@ -6,6 +6,7 @@ import com.recuperacion.pokeapi.controllers.PokeApiController;
 import com.recuperacion.pokeapi.models.PokemonBasico;
 import com.recuperacion.pokeapi.models.PokemonModel;
 import com.recuperacion.pokeapi.models.ResulBasico;
+import com.recuperacion.pokeapi.models.ResultInfo;
 import com.recuperacion.pokeapi.service.PokemonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,7 +20,7 @@ public class PokemonServiceImp implements PokemonService {
     private PokeApiClient pokeApiClient;
 
     @Override
-    public Optional<String> getInfoPokemon(String name) {
+    public Optional<ResultInfo> getInfoPokemon(String name) {
         PokemonModel pokemonModel = pokeApiClient.getPokemon(name);
         GenerateData generateData = new GenerateData(pokemonModel, pokeApiClient);
         return generateData.getInformation();

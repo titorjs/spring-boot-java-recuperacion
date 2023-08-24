@@ -2,6 +2,7 @@ package com.recuperacion.pokeapi.models;
 
 import lombok.Builder;
 import lombok.Getter;
+import lombok.Setter;
 
 import java.util.List;
 
@@ -15,20 +16,26 @@ public class PokemonModel {
     private List<Type> types;
     private List<Stat> stats;
 
-    @Builder
+    @Setter
     @Getter
     public static class Type{
+        private TypeName type;
+    }
+
+    @Setter
+    @Getter
+    public static class TypeName{
         private String name;
     }
 
-    @Builder
+    @Setter
     @Getter
     public static class Stat{
         private Integer base_stat;
         private StatName stat;
     }
 
-    @Builder
+    @Setter
     @Getter
     public static class StatName{
         private String name;

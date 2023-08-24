@@ -2,22 +2,24 @@ package com.recuperacion.pokeapi.models;
 
 import lombok.Builder;
 import lombok.Getter;
+import lombok.Setter;
 
 import java.util.List;
 
-@Builder
+@Setter
 @Getter
 public class PokemonDescription {
-    private List<Texto> flavor_text_entries;
 
-    @Builder
+    private List<Texts> flavor_text_entries;
+
+    @Setter
     @Getter
-    public static class Texto{
+    public static class Texts {
         private String flavor_text;
-        private List<Language> language;
+        private Language language;
     }
 
-    @Builder
+    @Setter
     @Getter
     public static class Language{
         private String name;

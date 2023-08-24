@@ -2,21 +2,23 @@ package com.recuperacion.pokeapi.models;
 
 import lombok.Builder;
 import lombok.Getter;
+import lombok.Setter;
 
 import java.util.List;
 
-@Builder
+@Setter
 @Getter
 public class PokemonWeaknesses {
+
     private DamageRelations damage_relations;
 
-    @Builder
+    @Setter
     @Getter
     public static class DamageRelations{
         private List<DoubleDamage> double_damage_from;
     }
 
-    @Builder
+    @Setter
     @Getter
     public static class DoubleDamage{
         private String name;

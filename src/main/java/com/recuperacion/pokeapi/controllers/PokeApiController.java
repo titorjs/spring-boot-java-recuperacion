@@ -3,6 +3,7 @@ package com.recuperacion.pokeapi.controllers;
 import com.recuperacion.pokeapi.client.PokeApiClient;
 import com.recuperacion.pokeapi.models.PokemonModel;
 import com.recuperacion.pokeapi.models.ResulBasico;
+import com.recuperacion.pokeapi.models.ResultInfo;
 import com.recuperacion.pokeapi.service.PokemonService;
 import lombok.Getter;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +23,7 @@ public class PokeApiController {
     public ResponseEntity<?> getPokeInfo(@PathVariable String name){
         //return "Info de " + name;
 
-        Optional<String> optionalResult = pokemonService.getInfoPokemon(name);
+        Optional<ResultInfo> optionalResult = pokemonService.getInfoPokemon(name);
         if (optionalResult.isPresent()) {
             return ResponseEntity.ok(optionalResult.get());
         }
