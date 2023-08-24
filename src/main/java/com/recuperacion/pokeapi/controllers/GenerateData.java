@@ -40,7 +40,7 @@ public class GenerateData {
 
 
             String types = pokemonModel.getTypes().stream()
-                    .map(type -> type.getType().getName()).reduce("", (text, element) -> text + element + "\t");
+                    .map(type -> type.getType().getName()).reduce("", (text, element) -> text + " " +element);
 
             resultInfoBuilder.type(types);
 
@@ -48,26 +48,23 @@ public class GenerateData {
             List<PokemonWeaknesses> provicional =  pokemonModel.getTypes().stream()
                     .map(type -> pokeApiClient.getTypeWeaknesses(type.getType().getName())).collect(Collectors.toList());
 
-            log.info("\n*********" +
-                    "\n" +pokemonModel.getTypes().get(0).getType().getName() +
-                    "\nDescription: " + description +
-                    "\ntypes:" + types +
-                    "\n\n*********");
-
             provicional.stream().
                     forEach(weakList -> weakList.getDamage_relations().getDouble_damage_from().stream()
                             .forEach(weakness -> weak.add(weakness.getName())));
 
-            String weaknesses = weak.stream().reduce((String, weakness) -> weakness + "\t").orElse("No Weaknesses");
+            String weaknesses = weak.stream().reduce("", (texto, weakness) -> texto + " " + weakness);
 
             resultInfoBuilder.weaknesses(weaknesses);
 
 
             String basePoint = pokemonModel.getStats().stream()
                     .map(stat -> stat.getStat().getName() + ": " + "*".repeat(stat.getBase_stat() / 10))
-                    .reduce((String, value) -> "\t\t" + value + "\n").orElse("Error :/");
+                    .reduce("", (texto, value) -> texto + "     " + value + "\n");
 
             resultInfoBuilder.basePoint(basePoint);
+
+            log.info("\n*********** Resultado en consola **********" +
+                    "\n" + resultInfoBuilder);
 
             return Optional.of(resultInfoBuilder.build());
         }

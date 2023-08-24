@@ -18,9 +18,10 @@ public class ResultInfo {
     public static class ResultInfoBuilder{
         @Override
         public String toString() {
+
             return  "1. Name: " + name + "\n" +
-                    "2. Height: " + (((float)height)*0.1) + "\n" +
-                    "3. Weight: " + (((float)weight)*0.1) + "\n" +
+                    "2. Height: " + (String.format("%.1f", ((float)height)*0.1)) + " m\n" +
+                    "3. Weight: " + (String.format("%.1f", ((float)weight)*0.1)) + " kg\n" +
                     "4. Description: " + description + "\n" +
                     "5. Type: " + type + "\n" +
                     "6. Weaknesses: " + weaknesses + "\n" +
